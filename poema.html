@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para você</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fdfaf6; /* Creme bem clarinho */
+            --text-color: #5d5454; /* Marrom suave para leitura */
+            --accent-color: #c9ada7; /* Bege rosado desbotado */
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Botão Inicial */
+        #startBtn {
+            padding: 15px 35px;
+            font-size: 1rem;
+            background-color: white;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        #startBtn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Container do Poema */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            display: none; /* Escondido no início */
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            text-align: justify;
+            white-space: pre-wrap; /* Mantém a formatação */
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin: 40px 0;
+            padding-left: 15px;
+            border-left: 1px solid var(--accent-color);
+            opacity: 0;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            text-align: right;
+            margin-top: 20px;
+            opacity: 0;
+        }
+
+        /* Cursor de digitação discreto */
+        .typing::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 1.1rem;
+            background-color: var(--accent-color);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Pequenas flores decorativas fixas */
+        .deco {
+            position: fixed;
+            color: var(--accent-color);
+            opacity: 0.2;
+            z-index: -1;
+            font-size: 18px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="startBtn" onclick="iniciar()">Para você, com amor</button>
+
+    <div class="container" id="mainContainer">
+        <h1 id="title"></h1>
+        
+        <div class="content" id="poema">
+            <p id="p1"></p>
+            <p id="p2"></p>
+            <p id="p3"></p>
+            <p id="p4"></p>
+            <p id="p5"></p>
+        </div>
+
+        <div class="quote" id="quote">
+            "Eu te amo não só pelo que você é, mas pelo que eu sou quando estou com você."
+        </div>
+
+        <div class="signature" id="signature">
+            - Vinicius Melotti.
+        </div>
+    </div>
+
+    <script>
+        // O texto exatamente como você enviou
+        const frases = [
+            "Nunca fui bom em traduzir sentimentos, em colocar em palavras aquilo que o coração insiste em guardar. Mas, desde a nossa primeira conversa, algo em mim já sabia… havia uma sensação diferente, como se, de alguma forma, eu e você pudéssemos dar certo.",
+            "Conforme íamos conversando, eu fui tendo a certeza de que você era a menina certa, uma pessoa que valia arriscar tudo — e eu arriscava. Uma pessoa para ter do meu lado para tudo: nos momentos difíceis, tristes e também nos momentos alegres e felizes. Eu sempre adorei ver seu rosto e seu belo sorriso, sempre reparei nele. Que sorriso mais lindo, fico sempre impressionado.",
+            "Lembra da nossa primeira interação? Eu perguntando qual era o seu miojo favorito. Parecia coisa de doido perguntar isso, mas adivinha? Você respondeu. E, daí pra frente, para mim foi só ganho. Eu fui descobrindo essa pessoa incrível que você é, e eu amo isso, de verdade.",
+            "Talvez a gente não tenha tanto tempo de história, nem tantas semelhanças. Afinal, nos conhecemos no começo do ano. Mas, mesmo em tão pouco tempo, eu aprendi tanto sobre você — e todos os dias eu quero descobrir mais. Sei dos seus gostos, dos seus jeitos, das suas manias… do quanto você gosta de desenhos da Disney, da praia, de sushi, do tempo que você dedica a si mesma, cuidando de cada detalhe — inclusive desse seu cabelo que eu tanto gosto de ver. E, no fim, percebo que não é só uma parte… eu amo você por inteiro.",
+            "Esse texto é só uma forma simples de te mostrar que existe alguém que te enxerga como algo único, como alguém especial de verdade. E, independente do que o futuro guarde, você sempre vai ter um espaço em mim — porque cada momento ao seu lado já fez tudo valer a pena."
+        ];
+
+        function iniciar() {
+            document.getElementById('startBtn').style.display = 'none';
+            const container = document.getElementById('mainContainer');
+            container.style.display = 'block';
+            setTimeout(() => container.style.opacity = '1', 50);
+
+            // Título primeiro
+            escrever("MY HOME", document.getElementById('title'), () => {
+                começarPoema(0);
+            }, 100);
+        }
+
+        function escrever(texto, elemento, callback, velocidade = 40) {
+            let i = 0;
+            elemento.classList.add('typing');
+            
+            function acao() {
+                if (i < texto.length) {
+                    elemento.innerHTML += texto.charAt(i);
+                    i++;
+                    setTimeout(acao, velocidade);
+                } else {
+                    elemento.classList.remove('typing');
+                    if(callback) callback();
+                }
+            }
+            acao();
+        }
+
+        function começarPoema(index) {
+            if(index < frases.length) {
+                const el = document.getElementById('p' + (index + 1));
+                escrever(frases[index], el, () => {
+                    setTimeout(() => começarPoema(index + 1), 800);
+                }, 30);
+            } else {
+                // Aparecer a frase final e assinatura
+                exibirFinal('quote', 1000);
+                exibirFinal('signature', 2500);
+            }
+        }
+
+        function exibirFinal(id, delay) {
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                el.style.opacity = '1';
+                el.style.transition = 'opacity 2s ease';
+            }, delay);
+        }
+
+        // Decoração estática
+        const icones = ['✿', '✧', '◦'];
+        for (let i = 0; i < 10; i++) {
+            let d = document.createElement('div');
+            d.className = 'deco';
+            d.innerHTML = icones[Math.floor(Math.random()*icones.length)];
+            d.style.left = Math.random() * 90 + 'vw';
+            d.style.top = Math.random() * 90 + 'vh';
+            document.body.appendChild(d);
+        }
+    </script>
+</body>
+</html>
