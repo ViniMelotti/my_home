@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poema - Ma Belle</title>
+<style>
+    body {
+        background: linear-gradient(135deg, #a9c9ff, #f3f9ff);
+        font-family: "Georgia", serif;
+        color: #1a1a1a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        text-align: center;
+        padding: 40px 20px;
+        overflow-y: auto; /* permite rolagem */
+    }
+
+    .caixa {
+        background: #ffffffcc;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.15);
+        padding: 30px;
+        max-width: 750px;
+        transition: 0.4s;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    button {
+        background-color: #2a6fdb;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        font-size: 1em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #1e56a0;
+    }
+
+    #poema {
+        text-align: justify;
+        line-height: 1.6;
+        white-space: pre-line;
+        font-size: 1.05em;
+        animation: fadeIn 1.5s ease;
+    }
+
+    .autor {
+        margin-top: 25px;
+        font-style: italic;
+        text-align: right;
+        animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+        animation: fadeIn 1s ease;
+    }
+</style>
+</head>
+<body>
+
+<div class="caixa fade" id="conteudo">
+    <h1>Você deseja ler o poema?</h1>
+    <div>
+        <button onclick="sim()">Sim</button>
+        <button onclick="nao()">Não</button>
+    </div>
+</div>
+
+<script>
+    const conteudo = document.getElementById("conteudo");
+
+    function nao() {
+        conteudo.classList.add("fade");
+        conteudo.innerHTML = `
+            <h1>Azar o seu.</h1>
+            <button onclick="voltarPergunta()">Voltar</button>
+        `;
+    }
+
+    function voltarPergunta() {
+        conteudo.classList.add("fade");
+        conteudo.innerHTML = `
+            <h1>Você deseja ler o poema?</h1>
+            <button onclick="sim()">Sim</button>
+            <button onclick="nao()">Não</button>
+        `;
+    }
+
+    function sim() {
+        conteudo.classList.add("fade");
+        conteudo.innerHTML = `
+            <h1>Você realmente deseja ler o poema?</h1>
+            <button onclick="mostrarPoema()">Sim</button>
+            <button onclick="meOdeia()">Não</button>
+        `;
+    }
+
+    function meOdeia() {
+        conteudo.classList.add("fade");
+        conteudo.innerHTML = `
+            <h1>Você me odeia por acaso?</h1>
+            <button onclick="sim()">Voltar</button>
+        `;
+    }
+
+    function mostrarPoema() {
+        conteudo.classList.add("fade");
+        conteudo.innerHTML = `
+            <h1>Ma belle</h1>
+            <div id="poema">
+                Esse vai ser o meu mais puro e sincero sentimento em um poema que eu já fiz,  pois eu jamais tinha feito algo parecido para alguém tão especial quanto você.
+
+                Mesmo não tendo muito tempo de amizade com você, eu sinto que parece que já somos conhecidos há muito tempo, a gente ri juntos de coisas que outras pessoas nem achariam graça, a gente faz brincadeiras, referências de filmes e séries um para o outro e sempre entendemos, sempre fazemos graça aonde um sempre sorri.
+
+                Nós temos tantas coisas boas e ruins em comum, mas mesmo assim eu sinto que falta muito caminho à frente para te conhecer melhor, muito mesmo, e continuo a procurar em te conhecer mais, a te entender mais, conhecer cada paixão sua pela vida, não só pela arte de ser poeta, pelo seu amor por fórmula 1 ou pela sua paixão à moda, mas sim de tudo ao seu redor. 
+
+                Eu não sou bom com palavras difíceis mas sempre procuro a me esforçar ao máximo para te agradar nesse breve poema. Sim! breve poema, porque tem tantas coisas que gostaria de me expressar mas acho que não consigo fazer isso em apenas palavras, mas sim pessoalmente ao seu lado, que é um dos melhores momentos do meu dia, quando eu te mando mensagem de manhã pensando que você possa só responder depois e adivinha, você às vezes responde no mesmo instante, isso já faz meu dia muito mais feliz.
+
+                Eu não posso saber em francês ou em inglês como você sabe, mas sempre me esforço para aprender a sua língua de demonstrar as suas emoções e sentimentos que eu sei que são muitos, do jeito que você se expressa nos seus poemas, eu acho tão lindo e tão mágico ler eles, você realmente sabe se expressar.
+
+                Eu não posso ser seu “type of man” perfeito mas eu juro que tento ao máximo te agradar e te deixar calma e feliz, desde quando você se abre pra mim para contar um problema pessoal que já viveu, quanto um momento ruim que você está passando. Eu faço isso para você não ficar triste e decaída, porque como já foi dito, você tem o sorriso mais belo que algum ser humano poderia ter, eu adoro olhar ele. Então antes de você pensar em cair em lágrimas, lembra que eu sempre estarei ao seu lado quando necessitar para alegrar seu dia, seja com piadocas, fotos aleatórias ou simples mensagens e áudios.
+
+                Não sei se alguém já fez algo parecido com isso para você, mas eu juro por tudo que é mais sagrado, essas são as minhas verdadeiras palavras escritas por mim, sem ajuda de ninguém. Talvez esse não vai ser o “melhor” presente que você poderia receber em termos de dinheiro, mas é o mais rico em sentimentos que alguém poderia presentear. 
+
+                “Você deságua em mim, e eu, oceano”
+            </div>
+            <div class="autor">- Vinícius Melotti (vinicin)</div>
+        `;
+    }
+</script>
+
+</body>
+</html>
